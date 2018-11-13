@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AutoCompleteTextview-Android.iml" filepath="$PROJECT_DIR$/AutoCompleteTextview-Android.iml" />
+      <module fileurl="file://C:\GithubProjects\AutoCompleteTextview-Android\AutoCompleteTextview-Android.iml" filepath="C:\GithubProjects\AutoCompleteTextview-Android\AutoCompleteTextview-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\GithubProjects\AutoCompleteTextview-Android\app\app.iml" filepath="C:\GithubProjects\AutoCompleteTextview-Android\app\app.iml" />
     </modules>
   </component>
 </project>

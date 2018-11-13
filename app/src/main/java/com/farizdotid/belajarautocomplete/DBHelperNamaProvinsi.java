@@ -25,7 +25,7 @@ public class DBHelperNamaProvinsi extends SQLiteOpenHelper {
 
     private Context mContext;
 
-    public DBHelperNamaProvinsi(Context context){
+    public DBHelperNamaProvinsi(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.mContext = context;
     }
@@ -45,18 +45,20 @@ public class DBHelperNamaProvinsi extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void loadContent(){
+    public void loadContent() {
         onUpgrade(this.getReadableDatabase(), DATABASE_VERSION, DATABASE_VERSION);
 
-        addData(1, "JAWA BARAT");
-        addData(2, "BANTEN");
-        addData(3, "JAWA TIMUR");
-        addData(4, "JAWA TENGAH");
-        addData(5, "KALIMANTAN");
-        addData(6, "SULAWESI");
+        addData(1, "MR100");
+        addData(2, "EL100");
+        addData(3, "EL101");
+        addData(4, "EL102");
+        addData(5, "ML500");
+        addData(6, "FR1000");
+        addData(7, "FR55");
+        addData(8, "RM1000");
     }
 
-    void addData(int idprov, String namaprov){
+    void addData(int idprov, String namaprov) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -89,6 +91,40 @@ public class DBHelperNamaProvinsi extends SQLiteOpenHelper {
             cursor.close();
             return arrData;
         } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String[] getByName(String name) {
+        try {
+            String arrData[] = null;
+            SQLiteDatabase db;
+            db = this.getReadableDatabase();
+
+//            String strSQL = "SELECT namaprovinsi FROM " + TABLE_NAME + " WHERE namaprovinsi like %%";
+//            Cursor cursor = db.rawQuery(strSQL, null);
+
+            String[] args = new String[1];
+            args[0] = "%" + name + "%";
+
+            String sql = "SELECT namaprovinsi FROM " + TABLE_NAME + " WHERE namaprovinsi LIKE ?";
+
+            Cursor cursor = db.rawQuery(sql, args);
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    arrData = new String[cursor.getCount()];
+                    int i = 0;
+                    do {
+                        arrData[i] = cursor.getString(0);
+                        i++;
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+            return arrData;
+        } catch (Exception e) {
+            Log.d("MyAPP", e.getMessage());
             return null;
         }
     }
